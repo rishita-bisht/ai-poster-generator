@@ -3,81 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Poster Generator</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
+    <title>AI Poster Generator Pro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div class="main-container">
-        <header class="container-fluid py-4">
-            <div class="text-center">
-                <span class="logo-text">
-                    <i class="fas fa-magic me-2"></i> AI Poster
-                </span>
+    <div class="bg-animated"></div>
+    
+    <header>
+        <div class="container py-3">
+            <div class="logo">
+                <i class="fas fa-wand-magic-sparkles"></i>
+                <span>AI Poster Pro</span>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <main class="container-fluid py-5 text-center hero-section">
-            <h1 class="display-3 fw-bold mb-5 text-white">
-                Create Posters Instantly with AI
-            </h1>
+    <main class="container">
+        <section class="hero-section">
+            <h1 class="hero-title">Create Stunning Posters with AI</h1>
+            <p class="hero-subtitle">Transform your ideas into professional-quality posters in seconds using advanced AI technology</p>
             
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-7 col-md-9 col-11">
-                    <div class="input-group prompt-box">
-                        <input type="text" id="prompt-input" class="form-control form-control-lg prompt-input" placeholder="Describe your poster idea..." aria-label="Poster prompt">
-                        <button class="btn btn-primary generate-btn" type="button" id="generate-btn">
-                            Generate <i class="fas fa-wand-magic-sparkles ms-2"></i>
+            <div class="prompt-container">
+                <div class="prompt-wrapper">
+                    <div class="prompt-input-wrapper">
+                        <input type="text" class="prompt-input" id="promptInput" placeholder="Describe your poster idea in detail...">
+                        <button class="btn-generate" id="generateBtn">
+                            <i class="fas fa-wand-magic-sparkles me-2"></i>
+                            Generate
                         </button>
                     </div>
                 </div>
+                
+                <button class="toggle-advanced" id="toggleAdvanced">
+                    <i class="fas fa-sliders"></i>
+                    Advanced Options
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                
+                <div class="advanced-options collapsed" id="advancedOptions">
+                    <div class="options-grid">
+                        <div class="option-group">
+                            <label>Aspect Ratio</label>
+                            <select class="custom-select" id="aspectRatio">
+                                <option value="portrait">Portrait (3:4)</option>
+                                <option value="square">Square (1:1)</option>
+                                <option value="landscape">Landscape (16:9)</option>
+                                <option value="story">Story (9:16)</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label>Quality</label>
+                            <select class="custom-select" id="quality">
+                                <option value="standard">Standard</option>
+                                <option value="hd">HD</option>
+                                <option value="4k">4K Ultra</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label>Color Scheme</label>
+                            <select class="custom-select" id="colorScheme">
+                                <option value="vibrant">Vibrant</option>
+                                <option value="pastel">Pastel</option>
+                                <option value="monochrome">Monochrome</option>
+                                <option value="neon">Neon</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label>Variations</label>
+                            <select class="custom-select" id="variations">
+                                <option value="4">4 Variations</option>
+                                <option value="6">6 Variations</option>
+                                <option value="8">8 Variations</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="container gallery-section">
-                <div class="row justify-content-center g-4">
-                    <div class="col-lg-2 col-md-3 col-6">
-                        <div class="poster-card poster-1"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-6">
-                        <div class="poster-card poster-2"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-6">
-                        <div class="poster-card poster-3"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-6">
-                        <div class="poster-card poster-4"></div>
-                    </div>
-                </div>
+            <div class="style-pills">
+                <div class="style-pill active" data-style="modern">Modern</div>
+                <div class="style-pill" data-style="vintage">Vintage</div>
+                <div class="style-pill" data-style="minimalist">Minimalist</div>
+                <div class="style-pill" data-style="abstract">Abstract</div>
+                <div class="style-pill" data-style="3d">3D Render</div>
+                <div class="style-pill" data-style="illustrative">Illustrative</div>
             </div>
-            
-            <div class="row justify-content-center mt-5 features-section">
-                <div class="col-auto text-center mx-4">
-                    <i class="fas fa-cloud fs-3 mb-2 feature-icon"></i>
-                    <p class="feature-text">Cloud Save</p>
-                </div>
-                <div class="col-auto text-center mx-4">
-                    <i class="fas fa-wand-magic-sparkles fs-3 mb-2 feature-icon"></i>
-                    <p class="feature-text">AI Magic</p>
-                </div>
-                <div class="col-auto text-center mx-4">
-                    <i class="fas fa-download fs-3 mb-2 feature-icon"></i>
-                    <p class="feature-text">High-Res</p>
-                </div>
-            </div>
-        </main>
+        </section>
 
-        <footer class="container-fluid py-4 mt-5 text-center">
-            <p class="copyright-text mb-0">&copy; 2023 AI Poster Co.</p>
-        </footer>
+        <section class="gallery-section">
+            <div class="gallery-header">
+                <h2 class="gallery-title">Generated Posters</h2>
+                <div class="gallery-controls">
+                    <button class="btn-control active" data-filter="all">All</button>
+                    <button class="btn-control" data-filter="recent">Recent</button>
+                    <button class="btn-control" data-filter="favorites">Favorites</button>
+                </div>
+            </div>
+
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Sample posters -->
+                <div class="poster-card">
+                    <svg class="poster-image" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="300" height="400" fill="url(#grad1)"/>
+                        <circle cx="150" cy="150" r="80" fill="rgba(255,255,255,0.1)"/>
+                        <circle cx="200" cy="250" r="60" fill="rgba(255,255,255,0.1)"/>
+                    </svg>
+                    <div class="poster-overlay">
+                        <div class="poster-actions">
+                            <button class="btn-action"><i class="fas fa-download"></i></button>
+                            <button class="btn-action"><i class="fas fa-heart"></i></button>
+                            <button class="btn-action"><i class="fas fa-share"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="poster-card">
+                    <svg class="poster-image" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="300" height="400" fill="url(#grad2)"/>
+                        <rect x="50" y="100" width="200" height="200" fill="rgba(255,255,255,0.1)" rx="20"/>
+                    </svg>
+                    <div class="poster-overlay">
+                        <div class="poster-actions">
+                            <button class="btn-action"><i class="fas fa-download"></i></button>
+                            <button class="btn-action"><i class="fas fa-heart"></i></button>
+                            <button class="btn-action"><i class="fas fa-share"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="poster-card">
+                    <svg class="poster-image" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="300" height="400" fill="url(#grad3)"/>
+                        <polygon points="150,50 250,350 50,350" fill="rgba(255,255,255,0.1)"/>
+                    </svg>
+                    <div class="poster-overlay">
+                        <div class="poster-actions">
+                            <button class="btn-action"><i class="fas fa-download"></i></button>
+                            <button class="btn-action"><i class="fas fa-heart"></i></button>
+                            <button class="btn-action"><i class="fas fa-share"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="poster-card">
+                    <svg class="poster-image" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#fa709a;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#fee140;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="300" height="400" fill="url(#grad4)"/>
+                        <circle cx="100" cy="150" r="50" fill="rgba(255,255,255,0.1)"/>
+                        <circle cx="200" cy="250" r="70" fill="rgba(255,255,255,0.1)"/>
+                        <circle cx="150" cy="320" r="40" fill="rgba(255,255,255,0.1)"/>
+                    </svg>
+                    <div class="poster-overlay">
+                        <div class="poster-actions">
+                            <button class="btn-action"><i class="fas fa-download"></i></button>
+                            <button class="btn-action"><i class="fas fa-heart"></i></button>
+                            <button class="btn-action"><i class="fas fa-share"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3 class="feature-title">Lightning Fast</h3>
+                <p class="feature-desc">Generate professional posters in seconds with our optimized AI engine</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h3 class="feature-title">Infinite Styles</h3>
+                <p class="feature-desc">Choose from dozens of artistic styles and customize every detail</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-cloud-arrow-up"></i>
+                </div>
+                <h3 class="feature-title">Cloud Storage</h3>
+                <p class="feature-desc">Access your creations anywhere with automatic cloud backup</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3 class="feature-title">4K Quality</h3>
+                <p class="feature-desc">Export in ultra-high resolution perfect for print and digital use</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 MLSA AI Poster Generator Pro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="toast-notification" id="toast">
+        <i class="fas fa-check-circle" style="color: var(--success); font-size: 1.5rem;"></i>
+        <div>
+            <div style="font-weight: 600;">Success!</div>
+            <div style="font-size: 0.9rem; color: var(--text-muted);">Your posters are being generated</div>
+        </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
